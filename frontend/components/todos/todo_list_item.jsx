@@ -10,7 +10,7 @@ class TodoListItem extends React.Component {
         const { todo } = this.props;
         return(
             <div>
-                <li>{todo.title}: {todo.body}</li>
+                <p>{todo.title}: {todo.body}</p>
             </div>
         )
     }

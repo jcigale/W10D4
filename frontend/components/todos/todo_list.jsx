@@ -1,23 +1,49 @@
 import React from 'react';
 import TodoListItem from './todo_list_item';
 import TodoForm from './todo_form';
-//import receiveTodo from '../../actions/todo_actions';
+//import {handleRemoveTodo, handleReceiveTodo} from '../../util/utils';
 
-const TodoList = (props) => {
-    return(
-    <div>
-        <TodoForm receiveTodo={props.receiveTodo}/>
-        <h3>Todo List</h3>
-        <ul>
-            {props.todos.map((todo) => {
-                //return (<li key={todo.id}>{todo.title}: {todo.body}</li>)
-                return (
-                    <TodoListItem todo={todo} key={todo.id} />
-                )
-            })}
-        </ul>
-    </div>
-    );
+class TodoList extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
+        this.handleReceiveTodo = this.handleReceiveTodo.bind(this);
+    }
+
+    handleRemoveTodo(todo) {
+        //e.preventDefault();
+        this.props.removeTodo(todo);
+        //debugger
+    }
+
+    handleReceiveTodo(todo) {
+        //e.preventDefault();
+        this.props.receiveTodo(todo);
+    }
+
+    
+    
+    render() {
+        return (
+            <div>
+                <TodoForm receiveTodo={this.props.receiveTodo} />
+                <h3>Todo List</h3>
+                <ul>
+                    {this.props.todos.map((todo) => {
+                        return (
+                            <li key={todo.id} >
+                                <TodoListItem todo={todo} removeTodo={this.props.removeTodo} receiveTodo={this.props.receiveTodo} />
+                                <button onClick={this.handleRemoveTodo(todo)}>Remove</button>
+                                <button onClick={this.handleReceiveTodo(todo)}>Done</button>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+        );
+    }
+    
 }
 
 export default TodoList;

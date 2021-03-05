@@ -16,7 +16,7 @@ export const receiveTodo = (todo) => {
     }
 }
 
-const removeTodo = (todo) => {
+export const removeTodo = (todo) => {
     return {
         type: REMOVE_TODO,
         todo,

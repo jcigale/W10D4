@@ -22,11 +22,11 @@ class TodoForm extends React.Component {
         //debugger
         this.props.receiveTodo(this.state);
         //debugger
-        this.state = {
+        this.setState ({
             id: uniqueId(),
             title: "",
             body: "",
-        }
+        })
         //debugger
     }
 
